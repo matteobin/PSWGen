@@ -22,8 +22,11 @@ int main(int argc, char* argv[]) {
 	int len = 0; 
     int caseSens = 1;
 	int complex = 0;
-	char* arg;
+	char arg[19];
 	for (int i=1; i<argc; ++i) {
+        if (strlen(argv[i])>18) {
+            continue;
+        }
         strcpy(arg, argv[i]);
         if (strcmp(arg, "-h")==0 || strcmp(arg, "--help")==0) {
 			showHelp(argv[0]);
@@ -59,9 +62,7 @@ int main(int argc, char* argv[]) {
 		strcat(availChars, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
         availCharsNum += 35; 
 	}
-    int pswArLen = len+1;
-	char psw[pswArLen];
-    strcpy(psw, "");
+	char psw[51] = "";
     char randChar[2]; 
     int randCharInd;
 	for (int i=0; i<len; i++) {

@@ -18,56 +18,58 @@ static void showHelp(char name[]) {
 }
 
 int main(int argc, char* argv[]) {	
-	int len = 0; 
-    int caseSens = 1;
+	int len = 0;
+	int caseSens = 1;
 	int complex = 0;
 	char arg[19];
-	for (int i=1; i<argc; ++i) {
-        if (strlen(argv[i])>18) {
-            continue;
-        }
-        strcpy(arg, argv[i]);
-        if (strcmp(arg, "-h")==0 || strcmp(arg, "--help")==0) {
+	for (int i = 1; i < argc; ++i) {
+		if (strlen(argv[i]) > 18) {
+			continue;
+		}
+		strcpy(arg, argv[i]);
+		if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {
 			showHelp(argv[0]);
 			return 0;
-        } else if (strcmp(arg, "-l")==0 || strcmp(arg, "--length")==0) {
-            if(i+1 < argc) {
-                sscanf(argv[++i], "%d", &len);
-                if (len==0) {
-                    printf("\nERROR: length option requires a valid number.\n");
-                }
-            } else {
-                printf("\nERROR: length option requires at least one number.\n");
-            }
-        }
-        else if (strcmp(arg, "-ci")==0 || strcmp(arg, "--case-insensitive")==0) {
-            caseSens = 0;
-        }
-        else if (strcmp(arg, "-c")==0 || strcmp(arg, "--complex")==0) {
-            complex = 1;
-        }
-    }
-    srand(time(NULL));
-    if (len==0) {
-        len = getRandNumBtwn(25, 50);
-    }
-    char availChars[98] = "0123456789abcdefghijklmnopqrstuvwxyz";
-    int availCharsNum = 36;
-    if (caseSens) {
-        strcat(availChars, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-        availCharsNum += 26; 
-    }
+		}
+		else if (strcmp(arg, "-l") == 0 || strcmp(arg, "--length") == 0) {
+			if (i + 1 < argc) {
+				sscanf(argv[++i], "%d", &len);
+				if (len == 0) {
+					printf("\nERROR: length option requires a valid number.\n");
+				}
+			}
+			else {
+				printf("\nERROR: length option requires at least one number.\n");
+			}
+		}
+		else if (strcmp(arg, "-ci") == 0 || strcmp(arg, "--case-insensitive") == 0) {
+			caseSens = 0;
+		}
+		else if (strcmp(arg, "-c") == 0 || strcmp(arg, "--complex") == 0) {
+			complex = 1;
+		}
+	}
+	srand(time(NULL));
+	if (len == 0) {
+		len = getRandNumBtwn(25, 50);
+	}
+	char availChars[98] = "0123456789abcdefghijklmnopqrstuvwxyz";
+	int availCharsNum = 36;
+	if (caseSens) {
+		strcat(availChars, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		availCharsNum += 26;
+	}
 	if (complex) {
 		strcat(availChars, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
-        availCharsNum += 35; 
+		availCharsNum += 35;
 	}
 	char psw[51] = "";
-    char randChar[2]; 
-    int randCharInd;
-	for (int i=0; i<len; i++) {
-        randCharInd = getRandNumBtwn(0, availCharsNum-1);
-        strncpy(randChar, availChars+randCharInd, 1);
-        strcat(psw, randChar);
+	char randChar[2] = "";
+	int randCharInd;
+	for (int i = 0; i < len; i++) {
+		randCharInd = getRandNumBtwn(0, availCharsNum - 1);
+		strncpy(randChar, availChars + randCharInd, 1);
+		strcat(psw, randChar);
 	}
     printf("\nYour password is: %s.\n", psw);
     return 0;

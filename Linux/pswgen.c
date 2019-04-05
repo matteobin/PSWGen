@@ -22,35 +22,36 @@ int main(int argc, char* argv[]) {
 	int caseSens = 1;
 	int complex = 0;
 	char arg[19];
-	for (int i = 1; i < argc; ++i) {
+	for (int i=1; i<argc; ++i) {
 		if (strlen(argv[i]) > 18) {
 			continue;
 		}
 		strcpy(arg, argv[i]);
-		if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {
+		if (strcmp(arg, "-h")==0 || strcmp(arg, "--help")==0) {
 			showHelp(argv[0]);
 			return 0;
 		}
-		else if (strcmp(arg, "-l") == 0 || strcmp(arg, "--length") == 0) {
-			if (i + 1 < argc) {
-				sscanf(argv[++i], "%d", &len);
-				if (len == 0) {
-					printf("\nERROR: length option requires a valid number.\n");
+		else if (strcmp(arg, "-l")==0 || strcmp(arg, "--length")==0) {
+			if (i+1<argc) {
+				sscanf(argv[++i], "%i", &len);
+				if (len<=0 || len>50) {
+					printf("\nERROR: length option requires a valid number between 1 and 50.\n");
+                    len = 0;
 				}
 			}
 			else {
-				printf("\nERROR: length option requires at least one number.\n");
+				printf("\nERROR: length option requires at least one number between 1 and 50.\n");
 			}
 		}
-		else if (strcmp(arg, "-ci") == 0 || strcmp(arg, "--case-insensitive") == 0) {
+		else if (strcmp(arg, "-ci")==0 || strcmp(arg, "--case-insensitive")==0) {
 			caseSens = 0;
 		}
-		else if (strcmp(arg, "-c") == 0 || strcmp(arg, "--complex") == 0) {
+		else if (strcmp(arg, "-c")==0 || strcmp(arg, "--complex")==0) {
 			complex = 1;
 		}
 	}
 	srand(time(NULL));
-	if (len == 0) {
+	if (len==0) {
 		len = getRandNumBtwn(25, 50);
 	}
 	char availChars[98] = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -66,7 +67,7 @@ int main(int argc, char* argv[]) {
 	char psw[51] = "";
 	char randChar[2] = "";
 	int randCharInd;
-	for (int i = 0; i < len; i++) {
+	for (int i=0; i<len; i++) {
 		randCharInd = getRandNumBtwn(0, availCharsNum - 1);
 		strncpy(randChar, availChars + randCharInd, 1);
 		strcat(psw, randChar);

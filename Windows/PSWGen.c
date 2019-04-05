@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 
-static int getRandNumBtwn(int min, int max) {
+int getRandNumBtwn(int min, int max) {
 	int range = max - min + 1;
 	int remainder = RAND_MAX % range;
 	int randomNumber;
@@ -14,7 +14,7 @@ static int getRandNumBtwn(int min, int max) {
 	return min + randomNumber % range;
 }
 
-static void showHelp(char name[]) {
+void showHelp(char name[]) {
 	printf("Welcome to PaSsWord Generator 3.0! Coded by Matteo Bini.\nThis software creates alpha-numeric, pseudo-randomly chosen from 25 to 50 characters-long passwords\nand it automatically copies them to the system clipboard.\n\nUsage: %s <option(s)>\nOptions:\n-h, --help\t\tshow help\n-l, --length NUMBER\tset password length\n-ci, --case-insensitive\tcreates a lowercase only password\n-c, --complex\t\tcreates an even more complex password, with special characters as well\nSpecial characters:\t !\"#$%%&'()*+,-./:;<=>?@[\\]^_`{|}~\n\nAfter running the command, all you have to do is copy and paste your new password wherever you need to.\n", name);
 }
 

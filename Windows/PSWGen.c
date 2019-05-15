@@ -15,7 +15,7 @@ int getRandNumBtwn(int min, int max) {
 }
 
 void showHelp(char name[]) {
-	printf("Welcome to PaSsWord Generator 3.1! Coded by Matteo Bini.\nThis software creates alpha-numeric, pseudo-randomly chosen from 25 to 50 characters-long passwords.\n\nUsage: %s <option(s)>\nOptions:\n-h, --help\t\tshow help\n-l, --length NUMBER\tset password length\n-n, --numbers-only\tcreates a number only password\n-ci, --case-insensitive\tcreates a lowercase only password\n-c, --complex\t\tcreates an even more complex password, with special characters as well\nSpecial characters:\t !\"#$%%&'()*+,-./:;<=>?@[\\]^_`{|}~\n\nAfter running the command, all you have to do is copy and paste your new password wherever you need to.\n", name);
+	printf("Welcome to PaSsWord Generator 3.1! Coded by Matteo Bini.\nThis software creates alpha-numeric, pseudo-randomly chosen from 25 to 50 characters-long passwords\nand it automatically copies them to the system clipboard.\n\nUsage: %s <option(s)>\nOptions:\n/h, /help\t\tshow help\n/l, /length NUMBER\tset password length\n/n, /numbersonly\tcreates a number only password\n/ci, /caseinsensitive\tcreates a lowercase only password\n/c, /complex\t\tcreates an even more complex password, with special characters as well\nSpecial characters:\t !\"#$%%&'()*+,-./:;<=>?@[\\]^_`{|}~\n\nAfter running the command, all you have to do is paste your new password wherever you need to.\n", name);
 }
 
 int main(int argc, char* argv[]) {	
@@ -29,11 +29,11 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 		strcpy(arg, argv[i]);
-		if (strcmp(arg, "-h")==0 || strcmp(arg, "--help")==0) {
+		if (strcmp(arg, "/h")==0 || strcmp(arg, "/help")==0) {
 			showHelp(argv[0]);
 			return 0;
 		} else {
-            if (strcmp(arg, "-l")==0 || strcmp(arg, "--length")==0) {
+            if (strcmp(arg, "/l")==0 || strcmp(arg, "/length")==0) {
                 if (i+1<argc) {
                     sscanf(argv[++i], "%i", &len);
                     if (len<=0 || len>50) {
@@ -45,11 +45,11 @@ int main(int argc, char* argv[]) {
                     printf("\nERROR: length option requires at least one number between 1 and 50.\n");
                 }
             }
-            if (strcmp(arg, "-n")==0 || strcmp(arg, "--numbers-only")==0) {
+            if (strcmp(arg, "/n")==0 || strcmp(arg, "/numbersonly")==0) {
                 numsOnly = 1;
-            } else if (strcmp(arg, "-ci")==0 || strcmp(arg, "--case-insensitive")==0) {
+            } else if (strcmp(arg, "/ci")==0 || strcmp(arg, "/caseinsensitive")==0) {
 			    caseSens = 0;
-		    } else if (strcmp(arg, "-c")==0 || strcmp(arg, "--complex")==0) {
+		    } else if (strcmp(arg, "/c")==0 || strcmp(arg, "/complex")==0) {
 			    complex = 1;
 		    }
 		}

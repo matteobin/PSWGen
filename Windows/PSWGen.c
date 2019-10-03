@@ -15,7 +15,7 @@ int getRandNumBtwn(int min, int max) {
 }
 
 void showHelp(char name[]) {
-	printf("Welcome to PaSsWord Generator 3.1! Coded by Matteo Bini.\nThis software creates alpha-numeric, pseudo-randomly chosen from 25 to 50 characters-long passwords\nand it automatically copies them to the system clipboard.\n\nUsage: %s <option(s)>\nOptions:\n/h, /help\t\tshow help\n/l, /length NUMBER\tset password length\n/n, /numbersonly\tcreates a number only password\n/ci, /caseinsensitive\tcreates a lowercase only password\n/c, /complex\t\tcreates an even more complex password, with special characters as well\nSpecial characters:\t !\"#$%%&'()*+,-./:;<=>?@[\\]^_`{|}~\n\nAfter running the command, all you have to do is paste your new password wherever you need to.\n", name);
+	printf("Welcome to PaSsWord Generator 3.1! Coded by Matteo Bini.\nThis software creates alpha-numeric, pseudo-randomly chosen from 25 to 50 characters-long passwords\nand it automatically copies them to the system clipboard.\n\nUsage: %s <option(s)>\nOptions:\n/?, /help\t\tshow help\n/l, /length NUMBER\tset password length\n/n, /numbersonly\tcreates a number only password\n/ci, /caseinsensitive\tcreates a lowercase only password\n/c, /complex\t\tcreates an even more complex password, with special characters as well\nSpecial characters:\t !\"#$%%&'()*+,-./:;<=>?@[\\]^_`{|}~\n\nAfter running the command, all you have to do is paste your new password wherever you need to.\n", name);
 }
 
 int main(int argc, char* argv[]) {	
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 		strcpy(arg, argv[i]);
-		if (strcmp(arg, "/h")==0 || strcmp(arg, "/help")==0) {
+		if (strcmp(arg, "/?")==0 || strcmp(arg, "/help")==0) {
 			showHelp(argv[0]);
 			return 0;
 		} else {
